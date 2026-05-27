@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>坂本俊一 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>坂本俊一 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#k1">1. 株式会社トーガシ</a>
+  <a href="#k2">2. 株式会社BuySell Technologies</a>
+  <a href="#k3">3. Mpathy株式会社</a>
+  <a href="#k4">4. 株式会社プレイド</a>
+</nav>
+<main>
+
+<div class="card" id="k1"><div class="card-inner">
+  <div class="badges"><span class="badge">総務部長</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">株式会社トーガシ</div>
+  <div class="co-url"><a href="https://www.tohgashi.co.jp" target="_blank">https://www.tohgashi.co.jp</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒104-0041 東京都中央区新富2-14-4　住友新富ビル 2F</td></tr><tr><th>上場区分</th><td>未上場（IPO準備中・N-3）</td></tr><tr><th>売上高</th><td>67億円（2025年1月期末予定）</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    1965年に創業し、展示会やイベントの企画から設計、施工、運営までをワンストップで提供する総合イベントプロデュース企業。年間3,000件以上のイベントを手がけ、Web3業界の注目イベント「WebX」や参加者4万人を超える「Climbers 2025」などの大型案件も担当。現在IPO準備フェーズで管理体制強化を進めており、成長企業での上場準備経験を積める貴重な機会。
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">1965年に創業し、2000年に法人化された会社です。展示会やイベントの企画から設計、施工、そして運営までをすべて自社で手がけている、まさに"総合イベントプロデュース企業"と呼べる存在です。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>1965年に創業し、2000年に法人化された会社です。展示会やイベントの企画から設計、施工、そして運営までをすべて自社で手がけている、まさに"総合イベントプロデュース企業"と呼べる存在です。年間3,000件以上のイベントを手がけていて、2025年1月期末には売上高67億円（23年60億➡24年63億円）を達成。その実績からも、堅実かつ着実に成長を続けている様子が伺えます。</p><p>特に注目したいのが、企画から運営までをワンストップで提供できる体制。社内には多くの専門職の方が在籍していて、各職種が密に連携しながらイベントを形にしていく力が、トーガシの大きな強みになっています。
+たとえば、Web3業界の注目イベント「WebX」や、参加者4万人を超えるビジネスカンファレンス「Climbers 2025」といった大型案件にも関わっており、その実績からも、業界内での評価の高さが感じられます。（就職イベントはほぼ独占）</p><p>現在、今後の株式上場（IPO、現在N-3）を視野に入れながら、社内の管理体制をより一層強化していこうとされています。その中でも、新規事業部門（成長戦略推進室）、経理部門、情報システム部門については、今後の体制づくりに向けて人員の強化が大きなテーマとなっています。</p><p><strong>代表取締役　吉田守克氏</strong><br>1982年に三井物産株式会社へご入社以来、国内外の事業投資や開発を手がけてこられた。情報産業分野では海外スタートアップとのジョイントベンチャー設立に携わるなど、先進的な取り組みに多く関わってこられました。
+その後、2006年にトーガシへ参画。以来、長く続くイベント施工会社を、単なる"作る会社"から"戦略的にプロデュースする会社"へと変えていく大きな改革をリードされています。
+最近では、Web3、NFT、バーチャル空間といった新しい技術領域にも積極的に挑戦されており、「展示・イベントの在り方そのものを変えていく」という強いビジョンのもと、これまでの業界常識にとらわれない柔軟かつ革新的な経営スタイルを貫いていらっしゃいます。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 【confidential】総務部長</div>
+          <div class="job-preview">IPO準備企業の総務・法務統括ポジション（4名のマネジメント）</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>業務内容：</strong></p><p><strong>〈総務管理〉</strong><br>総務業務全般の統括・業務フロー整備<br>社内規程・就業規則の整備・改定<br>オフィス管理、施設・備品管理<br>株主総会・取締役会の運営事務局</p><p><strong>〈法務管理〉</strong><br>契約書審査・作成・管理（法務メンバーとの連携）<br>法的リスクの洗い出しと対応策の立案<br>社内コンプライアンス体制の整備・推進</p><p><strong>〈上場準備対応〉</strong><br>IPOに向けた社内規程・体制の整備<br>主幹事証券・弁護士・監査法人等との連携<br>内部統制整備（管理部門側の対応）</p><p><strong>〈マネジメント〉</strong><br>総務2名・法務2名（計4名）のマネジメント<br>メンバーの育成・業務分掌の設計</p><p><strong>レポートライン：</strong>執行役員コーポレート本部長（CFO・41歳）</p><p><strong>応募資格：</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>総務・法務いずれかでの実務経験（5年以上目安）</li><li>部門・チームのマネジメント経験</li><li>社内規程・契約書類の整備経験</li><li>経営層・他部門と連携した課題解決の経験</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>IPO・上場準備への関与経験</li><li>総務・法務両方の実務経験</li><li>建設業・イベント・サービス業界での経験</li><li>株主総会・取締役会の運営経験</li></ul><p><strong>求める人物像：</strong></p><ul><li>現場に近い実務型マネジャーとして、自ら動ける方</li><li>上場準備という変化を前向きに楽しめる方</li><li>メンバーを育てながら組織を仕組み化できる方</li><li>数百名規模の会社で「管理部門を作る」気概がある方</li></ul><p><strong>募集背景：</strong>上場準備フェーズにおける管理体制強化のため、総務・法務を統括するマネジメント人材を募集。現状4名（総務2名・法務2名）の組織を率い、IPOに向けた社内基盤づくりを担っていただきます。</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 基本出社</span><span class="pill">❌ 副業不可</span></div>
+      </div>
+    </div>
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 情報システム部門 責任者候補/CIO候補（IPO準備対応）</div>
+          <div class="job-preview">IPO準備に向けた情報システム部門の体制強化・立ち上げポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>業務内容：</strong></p><p>IPO準備を進める中で、情報システム部門の体制強化を図るため、現在コーポレート本部内の「情報システム課」のマネージャーとしてご入社いただき、将来的には情報システム部長やCIOとしてご活躍いただける方を募集しています。</p><p>現時点では総務部配下の一課という位置づけですが、今後は「情報システム室」または「情報システム部」への格上げも検討されています。裁量を持って部門の立ち上げ・運営に関わっていただけるポジションです。</p><p><strong>■業務内容</strong></p><ul><li>①社内ITインフラ全般の企画・管理（ネットワーク、セキュリティ、端末管理など）</li><li>②業務システム（会計、人事、販売管理等）の導入・運用・保守</li><li>③情報セキュリティ体制の構築</li><li>④内部統制およびIT統制対応（J-SOX）</li><li>⑤ベンダー管理、予算管理</li></ul><p>現在はネットワーク管理やPC設定といったヘルプデスク業務が中心ですが、上場に向けたERP導入など、必要な施策やコスト判断を含めたプロジェクト推進をお任せします。
+将来的には、監査法人によるIT監査に耐えうるシステム体制の構築や、全社のDX推進の旗振り役としての活躍も期待しています。</p><p><strong>応募資格：</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>事業会社における情報システム部門でのマネジメント経験</li><li>社内ITインフラ・業務システムの導入・運用経験</li><li>IT統制や情報セキュリティの知識・対応経験</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>IPO準備におけるIT体制整備経験</li><li>ISMS、Pマークなど情報セキュリティ認証取得プロジェクト経験</li><li>クラウドサービス（Google Workspace、Microsoft 365等）導入・運用経験</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 基本出社</span><span class="pill">❌ 副業不可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://www.tohgashi.co.jp" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k2"><div class="card-inner">
+  <div class="badges"><span class="badge">総務マネージャー</span><span class="badge badge-blue">東証グロース</span></div>
+  <div class="co-name">株式会社BuySell Technologies</div>
+  <div class="co-url"><a href="https://buysell-technologies.com/" target="_blank">https://buysell-technologies.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒160-0004 東京都新宿区四谷4-28-8 PALTビル</td></tr><tr><th>上場区分</th><td>東証グロース</td></tr><tr><th>売上高</th><td>423億円（2023年12月期）</td></tr><tr><th>営業利益</th><td>25億円（2023年12月期）</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>リユース業界トップクラスのサービス「BUYSELL」を展開し、年間24万件以上の査定を実施</li><li>M＆A仲介業も手がけ、2024年12月期第2四半期は売上予想を約600億円に上方修正</li><li>積極的なM&A戦略により、2024年8月にはレクストHD含む7社を子会社化</li><li>リユース業界は3兆円規模のマーケット（個人の隠れ資産含めると44兆円）で成長余地大</li><li>元リクルート出身の徳重浩介氏がCEOに就任し、データドリブン経営を推進</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">M＆A仲介業と出張買取サービス「BUYSELL」を展開しています。サステナビリティ・SDGsへの関心の高まりにより、サービス開始以降 連続増収を続けており、2023年12月期は売上高423億円、営業利益25億円を見込んでいます。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>M＆A仲介業と出張買取サービス「BUYSELL」を展開しています。</p><p>サステナビリティ・SDGsへの関心の高まりにより、サービス開始以降 連続増収を続けており、2023年12月期は売上高423億円、営業利益25億円を見込んでおり、リユース業界においてトップクラスのサービスです。
+買取事業では、年間24万件以上の査定を行う出張買取を中心に、店舗買取や宅配買取など、多様なチャネル／ブランドを運営。商材としては幅広く、着物・切手・ブランド品の高価格帯商材を中心に、レコード・家電等、家々に眠る様々な " かくれ資産 "を取り扱っています。
+販売事業では、買取した商品を自社一元管理し、自社ECやECモール、BtoBの古物オークションなど、toB/toC問わず日本国内から世界まで、最適なチャネルへ流通させています。</p><p>これらの既存事業の成長に加え、非連続な成長を図るべく、積極的なテクノロジーへの投資とM&A戦略を重要な経営戦略と位置付けています。テクノロジー投資については、エンジニア組織の積極的な拡大を図り、リユースプラットフォーム「Cosmos」の開発を推進。M&Aについては、2020年10月にはリユースオークションを運営する株式会社タイムレス、2022年７月にはリユースフランチャイズ事業を展開する株式会社フォーナイン、2023年12月にはラグジュアリーブランドの買取・販売を強みとする株式会社日創を、2024年8月には「買取 福ちゃん」運営企業を含むリユース企業計7社を有するレクストHDを子会社化しており、今後もリユースおよび関連業界への積極的なM&Aを推進していくことを計画しています。</p><p>2024年12月期第2四半期の決算についても非常に好調に推移しており、今年度売上予想は約600億円に上方修正も行っています。</p><p><strong>代表取締役社長兼 CEO　徳重浩介氏</strong><br>2006年立教大学卒業後、リクルートに入社。飲食領域の営業を経て13年にリクルートマーケティングパートナーズ アド・オプティマイゼーション推進室に異動。その後、執行役員　企画統括室長を経て16年にまなび領域担当へ。2019年にリクルートライフスタイルの執行役員となり、飲食領域担当に。2021年飲食Division長。2024年4月より代表取締役社長兼 CEO 就任。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 【人事戦略室】総務マネージャー</div>
+          <div class="job-preview">組織拡大・M&Aに伴う戦略的総務企画・オフィス戦略の立案推進ポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>募集背景</strong></p><p>当社では組織拡大やM&Aを背景に、拠点や人員規模が急速に増加しています。一方で、現状の総務機能は既存オペレーションの安定運用に留まっており、企業成長に合わせた戦略的な総務企画やオフィス・ガバナンス戦略の立案が十分に機能していません。現在は部長クラス以上が業務をフォローしている状態であり、総務マネージャー不在がボトルネックとなっています。そのため今回、総務機能を再定義し、ファシリティ・BCP・ガバナンス・業務効率化といった全社横断テーマを自律的に推進できるリーダー人材を募集します。</p><p><strong>期待する成果</strong></p><ul><li>入社〜3ヶ月：現行オペレーションの把握と課題抽出／BCP・オフィス環境整備の改善計画策定</li><li>6ヶ月〜1年後：企業戦略に沿った総務中期計画の立案および推進体制の構築（ファシリティ戦略・BCP・効率化PJなど）</li></ul><p><strong>業務内容</strong></p><ul><li>オフィス戦略・拠点最適化の企画立案（立地・規模・コスト最適化）</li><li>ファシリティマネジメント全般（レイアウト、什器、セキュリティ環境整備）</li><li>事業継続計画（BCP）およびガバナンス・リスク管理の推進</li><li>業務プロセス・文書管理・稟議などの業務効率化施策の企画・導入</li><li>ベンダー管理／契約・購買ルールの見直し・最適化</li><li>部門マネジメント（メンバー育成・役割分担・運営体制構築）</li></ul><p><strong>あなたに提供できる価値</strong></p><ul><li>組織スケールに伴う総務機能の再構築・マネジメント立ち上げ経験</li><li>経営直下でのガバナンス・BCP・ファシリティ最適化への関与</li><li>成長企業ならではの柔軟な裁量と、企業インフラを創り上げる達成感</li></ul><p><strong>キャリアパス</strong></p><ul><li>人事部長／人事戦略室長</li></ul><p><strong>応募資格</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>事業会社における総務領域の経験（5年以上）</li><li>オフィス移転／レイアウト設計／BCP策定／リスクマネジメントなどの実務経験</li><li>チームマネジメントまたはプロジェクトリーダー経験</li><li>現場オペレーションと経営視点の両方を意識した企画推進力</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>複数拠点・グループ会社を持つ企業でのファシリティ統括経験</li><li>コスト構造改革／業務BPR／DXツール導入による効率化推進経験</li><li>上場企業での内部統制・ガバナンス強化PJ経験</li><li>不動産・建築・リスクマネジメントに関する基礎知識</li></ul><p><strong>求める人物像</strong></p><ul><li>オペレーション管理に留まらず、戦略的な企画思考を持つ方</li><li>経営・現場の両視点で課題を構造的に捉え、施策を自走できる方</li><li>調整力が高く、部門間をつなぎながら全社最適を実現できる方</li><li>現状維持ではなく、改善・変革を楽しめる方</li></ul><p><strong>働く環境</strong></p><p>生産性高く、切磋琢磨しながら成長できる環境です<br>一部リモートOK   ： オンボーディング後はパフォーマンスに応じて週2日程度の在宅勤務可能<br>成長を支える制度 ： 成長期待にフォーカスしたミッショングレード制度や、キャリア自律を支援する目標設定など、1人1人の成長を支援する人事制度</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">❌ 副業不可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://buysell-technologies.com/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k3"><div class="card-inner">
+  <div class="badges"><span class="badge">総務スペシャリスト</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">Mpathy株式会社</div>
+  <div class="co-url"><a href="https://mpathy.co.jp/" target="_blank">https://mpathy.co.jp/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都渋谷区渋谷四丁目５番６号　トキワビル４０１号室</td></tr><tr><th>上場区分</th><td>未上場</td></tr><tr><th>従業員数</th><td>400名超（2024年11月時点）</td></tr><tr><th>売上高</th><td>20億円弱（2025年予定）</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    「人と医療の距離を縮める」を掲げ、クリニック運営支援や住宅型有料老人ホーム「ウェルホーム」の展開を通じて、医療体験の質向上に挑む成長企業。駅前好立地への出店戦略により高い収益性を維持し、Google平均4.6以上の評価を獲得。来年度は100名以上の増員を見込む拡大フェーズで、杉江氏（元Paidy CEO）と持田氏の共同代表のもと、業界構造の変革に挑戦。
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">医療機関のDX支援とホスピス運営を展開する医療×テクノロジー企業です。「人と医療の距離を縮める」を掲げ、クリニック運営支援と自社医療施設運営の両軸で事業を拡大しています。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>医療機関のDX支援とホスピス運営を展開する医療×テクノロジー企業です。「人と医療の距離を縮める」を掲げ、クリニック運営支援と自社医療施設運営の両軸で事業を拡大しています。</p><p>主力のクリニック領域では、「クリニックプラス」として内科・皮膚科を中心に現在9院を運営。LINE予約、キャッシュレス決済、待ち時間短縮などを実装し、従来の医療機関に多い不便さを解消するモデルを構築しています。今後も拡大を計画しています。2025年の売上は20億円弱、それに対して4億円弱の黒字を計上するという極めて高い収益性を誇っています。
+DX領域では、予約・問診・決済・評価機能を統合した「Clinic Plus Suite」を開発・提供。自社クリニックでの運営データを活用しながら改善を重ねている点が特徴です。
+ホスピス事業では、住宅型有料老人ホーム「ウェルホーム」を現在5施設展開。医療依存度の高い利用者に対し、看護師・介護士が24時間365日常駐する体制を整えています。</p><p>外資系金融機関出身のFounderと、複数社での経営経験を持つ杉江社長の強力なタッグにより成長を続ける企業。今後は、医療事業で生み出した強固なキャッシュフローを基盤に、後継者不足に悩む地方のブルーカラー産業や、優れた技術を持つ地場企業をM&Aでグループ化していく構想を描いています。</p><p><strong>代表取締役　杉江 陸氏</strong><br>1971年生まれ。東京大学教養学部卒業。
+1994年、富士銀行（現 みずほ銀行）に入行。その後、アクセンチュアを経て、2006年にGEコンシューマー・ファイナンスに入社。新生フィナンシャルへ社名変更後、2012年に同社代表取締役社長兼CEOに就任。2016年からは新生銀行執行役員（のち常務執行役員）を務めるほか、アプラス取締役を兼任。
+2017年11月よりPaidy代表取締役社長兼CEOに就任。2021年10月、PayPalによる約3,000億円での買収後、同年11月よりPayPal本社VPを兼任。現在はMpathy株式会社代表取締役。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 総務スペシャリスト（マネージャー候補）</div>
+          <div class="job-preview">事業拡大に伴う社内オペレーション・ファシリティ管理の基盤構築リーダー</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>募集背景</strong></p><p>事業拡大および拠点数の増加に伴い、社内オペレーションおよびファシリティ管理の重要性が高まっています。</p><p>組織が拡大する中で<br>オフィスおよび拠点のファシリティ管理<br>社内オペレーションの標準化<br>情報システム管理<br>庶務業務の効率化<br>など、総務機能の強化が必要となっています。</p><p>本ポジションでは、単なる総務業務の運用ではなく、
+会社全体の業務効率を高めるコーポレートオペレーション基盤の構築をリードしていただきます。</p><p><strong>ポジションの概要</strong></p><p>Mpathy株式会社の事業成長を支えるため、
+社内オペレーションおよびファシリティ管理の基盤を構築・改善するポジションです。</p><p>総務は<br>社内オペレーション<br>ファシリティ管理<br>情報システム管理<br>庶務業務<br>コーポレート業務基盤<br>など、会社運営を支える重要な役割を担います。</p><p>本ポジションでは<br>拠点管理<br>社内オペレーション改善<br>ITツール活用<br>庶務業務の仕組み化<br>などを通じて、生産性の高い組織運営の仕組みづくりを推進していただきます。</p><p><strong>具体的な業務内容</strong></p><p><strong>■オフィス・拠点ファシリティマネジメント</strong></p><ul><li>本社オフィスおよび各拠点のファシリティ管理</li><li>オフィスレイアウト設計・移転対応</li><li>賃貸契約管理</li><li>ビル管理会社との調整</li><li>設備管理および保守</li><li>オフィス環境改善</li></ul><p><strong>■コーポレートオペレーションの設計・改善</strong></p><ul><li>社内業務フローの整理および標準化</li><li>コーポレートオペレーションの効率化</li><li>社内ツール運用ルールの整備</li><li>生成AIを活用した業務効率化</li></ul><p><strong>■庶務オペレーションの管理</strong></p><ul><li>備品管理・発注業務の統括</li><li>郵送物管理</li><li>社内問い合わせ対応オペレーションの設計</li><li>社内庶務業務の標準化および効率化</li><li>庶務業務を担当するメンバーのマネジメント</li></ul><p>※プレイヤーとして庶務業務を担うのではなく、庶務オペレーション全体の設計・管理を担っていただきます。</p><p><strong>■情報システム管理</strong></p><ul><li>Google Workspace / Slack等の管理</li><li>IT資産管理</li><li>社内ITツールの管理</li><li>情報セキュリティポリシーに則った管理ルールの策定・運用</li></ul><p><strong>組織：</strong>コーポレート本部長（男性40代）-★（本ポジション）-総務チーム（2名業務委託派遣含む）</p><p><strong>応募資格</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>総務またはコーポレート部門での実務経験5年以上</li><li>ファシリティ管理経験</li><li>社内オペレーション改善経験</li><li>ITツール運用経験</li><li>マネジメント経験またはリーダー経験</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>多拠点ビジネスでの総務経験</li><li>IT / 情報システム管理経験</li><li>オフィス移転経験</li><li>SaaS管理経験</li><li>DX推進経験</li></ul><p><strong>求める人物像</strong></p><ul><li>「守り」と「改善」の両立：正確な実務をこなしつつ、「もっと良くできる」という改善意識を持てる方</li><li>論理的思考力：法令や規程の解釈において、根拠に基づいた説明ができる方</li><li>変化への柔軟性：急成長する組織において、ルールのアップデートを楽しめる方</li><li>未整備な環境や変化を楽しめる柔軟性のある方</li><li>スピード感を持って自律的に解決策を生み出せる方</li><li>多様な価値観を尊重し、組織文化醸成にも情熱を持てる方</li><li>当社のミッション、ビジョン、在り方に共感いただける方</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 基本出社</span><span class="pill">💼 副業要相談</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://mpathy.co.jp/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="k4"><div class="card-inner">
+  <div class="badges"><span class="badge">総務ポジション</span><span class="badge badge-blue">東証グロース</span></div>
+  <div class="co-name">株式会社プレイド</div>
+  <div class="co-url"><a href="https://plaid.co.jp/company.html" target="_blank">https://plaid.co.jp/company.html</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒104-0061 東京都中央区銀座6-10-1 GINZA SIX 10F</td></tr><tr><th>上場区分</th><td>東証グロース</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li><strong>盤石な経営基盤と上場実績：</strong><br>2014年の創業期から累計数十億円規模の資金調達を重ね、2019年にはGoogleからも資金調達を実施。2020年12月に東証マザーズへ上場済みです。</li><li><strong>圧倒的な競合優位性：</strong><br>自社で膨大な行動データを低コストでリアルタイム解析・保持する仕組みは、他社の追随を許しません。明確なベンチマーク企業が存在しない独自ポジションを確立しています。</li><li><strong>圧倒的な日本一への挑戦：</strong><br>ARR100億円を突破した今、直近はエンタープライズ戦略を強固に推し進め、国内市場での圧倒的No.1を目指す熱いフェーズに参画できます。</li><li><strong>多様なキャリアパス：</strong><br>オープンな&quot;手挙げ制度&quot;があり、1社にいながら社内の別プロダクトへの異動や、グループ会社への出向・立ち上げなど、柔軟で幅広いキャリア形成が可能です。</li><li><strong>柔軟な働き方：</strong><br>平均年齢は34〜35歳。コアタイムのないフレックスタイム制を導入しており、子育て世代も柔軟に働ける環境です（※非効率なコミュニケーションも大切にするカルチャーのためフルリモートは不可、ビジネスサイドは週3日出社となります）。</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「一人ひとりの人生において、何かに全力でのめり込むことや自身の能力を発揮し楽しむことを支援したい」という思いから設立され、「データによって人の価値を最大化する」をミッションに掲げる急成長テクノロジーカンパニーです。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>「一人ひとりの人生において、何かに全力でのめり込むことや自身の能力を発揮し楽しむことを支援したい」という思いから設立され、「データによって人の価値を最大化する」をミッションに掲げる急成長テクノロジーカンパニーです。主力であるCXプラットフォーム「KARTE」などのSaaS提供や、プロフェッショナルサービスを展開しています。</p><p>同社の最大の武器は、エンドユーザーの「1st Party Customer Data」をリアルタイムに取得し、長期保持できる自社の独自インフラと高度なエンジニアリング力です。他社がゼロから構築することは極めて困難であり、単なるマーケティングSaaSの枠を超えた「データ基盤」として唯一無二の優位性を誇ります。</p><p>2020年には東証マザーズ（現：グロース市場）に上場を果たし、事業の透明性と成長性も高く評価されています。業績は絶好調で、2024年10月にはグループ合計ARR（年間経常収益）100億円を突破。11億人分の解析実績（月間データ量180ペタバイト）を持ち、ZOZOやメガバンクなど名だたる大企業の課題解決に伴走しています。AI技術の本格導入も進み、さらなる進化を続ける刺激的な環境です。</p><p><strong>代表取締役　倉橋 健太氏</strong><br>ソフトバンクBB、リクルートを経て2011年に株式会社プレイドを創業。エンジニア出身でありながら、事業開発・経営にも長け、プレイドを急成長企業へと導く。著書『KARTE CX DIVE』でも知られる。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 総務ポジション</div>
+          <div class="job-preview">「環境を創る」ことを主軸に、ソフト・ハードを問わず定常業務の自動化やオペレーション設計を通じて、柔軟で変化に強い土台を整える総務ポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>仕事概要</strong><br>現在、プレイドの総務は少人数の体制ですが、「環境を創る」ことを主軸に、ソフト、ハードを問わず定常業務の自動化やオペレーション設計などを通じて、柔軟で変化に強い土台を整えています。既存メンバーと連携しながら、「共感と調整」を軸とした対応や、気づきのアンテナを張りながらメンバーとの橋渡しをしてくださる方に来ていただけたらと考えています。与えられた業務をこなすだけではなく、「チームとしてどう動くとより良い環境になるか」を一緒に考えていきましょう。</p><p><strong>業務内容の一例</strong></p><ul><li>オフィス戦略企画・実施<ul><li>環境設計</li><li>スペース活用効果最大化</li><li>コスト管理</li></ul></li><li>備品の調達・管理</li><li>業務委託管理</li><li>社内イベントの運営</li><li>株主総会運営</li><li>福利厚生の導入や運営</li><li>その他総務に関連する業務</li></ul><p><strong>ポジションの魅力</strong><br>私たちは働く環境を、常にアップデートを続ける&quot;変化するプロダクト&quot;として捉えています。働き方・組織構造・文化が進化すれば、それに合わせて環境や、仕組みも柔軟な変化が求められます。総務は、その変化を設計・推進する立場として、オフィスという&quot;環境そのもの&quot;を変えていく役割を担うやりがいのあるポジションです。ソフト・ハードを問わず、様々なソリューションを駆使して働く環境をより良いものに進化させることが最大の魅力です。</p><p><strong>応募資格</strong></p><p><span class='tag tag-must'>MUST</span></p><ul><li>オフィス移転等、複数部門を跨いでのプロジェクト推進経験</li><li>業務委託管理の経験</li><li>オフィスレイアウトや福利厚生などの社内環境改善経験</li><li>Microsoft ExcelやGoogleスプレッドシート中級レベルのスキル</li></ul><p><span class='tag tag-want'>WANT</span></p><ul><li>社内ワークフロー導入や運用改善経験</li><li>IT企業やベンチャー企業でのコーポレート経験</li><li>複数の業務を同時に処理するマルチタスク経験</li><li>株主総会の運営</li><li>取引事業者とのコミュニケーション・交渉スキル</li><li>チームマネジメント経験</li></ul><p><strong>求める人物像</strong></p><ul><li>アクセラレーターの意義に共感できる方</li><li>コミュニケーション能力が高い方</li><li>多方面からくるリクエストや課題をポジティブな姿勢で取り組める方</li><li>経営視点のもと、オーナーシップを持って業務を構築し推進できる方</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://plaid.co.jp/company.html" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://recruit.plaid.co.jp/#block-fc68ad7e65b94b559780dcccd7b02ec1" target="_blank">📋 採用情報</a><a class="lbtn lbtn-out" href="https://www.google.com/url?q=https://www.youtube.com/watch?v%3DxRucx5Xj2nQ&sa=D&source=calendar&ust=1775866547050712&usg=AOvVaw1No6M6KY3RdRl4RQ03QRM_" target="_blank">📺 会社紹介動画</a><a class="lbtn lbtn-out" href="https://blog.plaid.co.jp/n/n9e2a3faf72d7" target="_blank">📖 参考記事</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが坂本俊一 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
